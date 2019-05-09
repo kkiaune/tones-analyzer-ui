@@ -46,6 +46,31 @@ const ChatWindow = ({ handleChange, handleClick, classes, messages, isLoading })
         return smileToReturn;
     }
 
+
+    const getSmileColor = tone => {
+        let smileColorToReturn = null;
+
+        switch (tone) {
+            case "Anger":
+                smileColorToReturn = 'red';
+                break;
+            case "Fear":
+                smileColorToReturn = 'purple';
+                break;
+            case "Joy":
+                smileColorToReturn = 'orange';
+                break;
+            case "Sadness":
+                smileColorToReturn = 'blue';
+                break;
+            default:
+                break;
+        };
+
+        return smileColorToReturn;
+    }
+
+
     const getStyle = message => {
         let styleToReturn = null;
 
@@ -89,7 +114,7 @@ const ChatWindow = ({ handleChange, handleClick, classes, messages, isLoading })
                                         message.tones && message.tones.map(tone => (
                                         <Typography key={`${tone.tone}_${tone.score}`} color="textSecondary">
                                             {tone.LT_text} {tone.score}
-                                            <FontAwesomeIcon className={classes.marginLeftCl} icon={getSmile(tone.tone)} />
+                                            <FontAwesomeIcon className={classes.marginLeftCl} icon={getSmile(tone.tone)} color={getSmileColor(tone.tone)} />
                                         </Typography>)
                                         )
                                     }
@@ -117,7 +142,7 @@ const ChatWindow = ({ handleChange, handleClick, classes, messages, isLoading })
                                             </Avatar>
                                         }
 
-                                        title="Chatbot"
+                                        title="Agentas"
                                         subheader="2019-05-09 17:41"
                                     />
                                     <CardContent>

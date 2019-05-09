@@ -63,6 +63,9 @@ export const styles = theme => ({
     boxShadow: '0 4px 6px 3px rgba(52, 152, 219, .6)',
     marginBottom: 10,
   },
+  smileAnger: {
+    color: 'red',
+  },
   paper: {
     backgroundColor: 'transparent',
   },

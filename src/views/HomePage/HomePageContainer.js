@@ -87,7 +87,7 @@ export class HomePageContainer extends Component {
                     position="fixed"
                     className={classNames(classes.appBar, {
                         [classes.appBarShift]: isDrawerOpen,
-                    })}
+                    })} 
                 >
                     <Toolbar disableGutters={!isDrawerOpen}>
                         <IconButton
@@ -101,7 +101,7 @@ export class HomePageContainer extends Component {
                             <FontAwesomeIcon icon="bars" />
                         </IconButton>
                         <Typography variant="h6" color="inherit" noWrap>
-                            Mini variant drawer
+                            Tone Analyzer (Telia - Lietuvos draudimas)
             </Typography>
                     </Toolbar>
                 </AppBar>
