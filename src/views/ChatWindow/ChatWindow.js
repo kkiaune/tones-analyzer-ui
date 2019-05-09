@@ -111,7 +111,7 @@ const ChatWindow = ({ handleChange, handleClick, classes, messages, isLoading })
                                         </Avatar>
                                     }
                                     action={
-                                        message.tones && message.tones.map(tone => (
+                                        message.tones && message.tones.length > 0 && message.tones.map(tone => (
                                         <Typography key={`${tone.tone}_${tone.score}`} color="textSecondary">
                                             {tone.LT_text} {tone.score}
                                             <FontAwesomeIcon className={classes.marginLeftCl} icon={getSmile(tone.tone)} color={getSmileColor(tone.tone)} />
