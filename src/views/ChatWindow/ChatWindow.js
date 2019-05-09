@@ -78,9 +78,6 @@ const ChatWindow = ({ handleChange, handleClick, classes, messages, isLoading, i
             case "Anger":
                 styleToReturn = 'clientAnger';
                 break;
-            case "Disgust":
-                styleToReturn = 'clientDisgust';
-                break;
             case "Fear":
                 styleToReturn = 'clientFear';
                 break;
