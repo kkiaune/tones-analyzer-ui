@@ -12,6 +12,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
+import Snackbar from '@material-ui/core/Snackbar';
+import Button from '@material-ui/core/Button';
 
 import { styles } from './HomePageContainer.styles';
 import ChatSummary from '../../components/ChatSummary/ChatSummary';
@@ -32,12 +34,14 @@ export class HomePageContainer extends Component {
             allTexts: [],
             messages: [],
             isLoading: false,
-            inputValue: ''
+            inputValue: '',
+            isSnackbarOpen: false
         };
 
         this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.getEmotions = this.getEmotions.bind(this);
+        this.handleSnackbarOpen = this.handleSnackbarOpen.bind(this);
     }
 
     handleDrawerOpen() {
@@ -64,7 +68,7 @@ export class HomePageContainer extends Component {
             this.setState({ messages: messages, isLoading: false, inputValue: '' });
         })
             .catch((err) => {
-                this.setState({ isLoading: false });
+                this.setState({ isLoading: false, isSnackbarOpen: true });
                 console.log('err', err);
             });;
     }
@@ -73,67 +77,99 @@ export class HomePageContainer extends Component {
         this.setState({ inputValue: obj.target.value });
     }
 
+    handleSnackbarOpen(){
+        this.setState(prevstate=>({ isSnackbarOpen: !prevstate.isSnackbarOpen}));
+    }
+
     render() {
         const { theme, classes } = this.props;
-        const { isDrawerOpen, availableChats, messages, isLoading, inputValue } = this.state;
+        const { isDrawerOpen, availableChats, messages, isLoading, inputValue, isSnackbarOpen } = this.state;
 
         return (
-            <div className={classes.root}>
-                <CssBaseline />
-                <AppBar
-                    position="fixed"
-                    className={classNames(classes.appBar, {
-                        [classes.appBarShift]: isDrawerOpen,
-                    })}
-                >
-                    <Toolbar disableGutters={!isDrawerOpen}>
-                        <IconButton
-                            color="inherit"
-                            aria-label="Open drawer"
-                            onClick={this.handleDrawerOpen}
-                            className={classNames(classes.menuButton, {
-                                [classes.hide]: isDrawerOpen,
-                            })}
-                        >
-                            <FontAwesomeIcon icon="bars" />
-                        </IconButton>
-                        <Typography variant="h6" color="inherit" noWrap>
-                            Tone Analyzer (Telia - Lietuvos draudimas)
+            <React.Fragment>
+                <div className={classes.root}>
+                    <CssBaseline />
+                    <AppBar
+                        position="fixed"
+                        className={classNames(classes.appBar, {
+                            [classes.appBarShift]: isDrawerOpen,
+                        })}
+                    >
+                        <Toolbar disableGutters={!isDrawerOpen}>
+                            <IconButton
+                                color="inherit"
+                                aria-label="Open drawer"
+                                onClick={this.handleDrawerOpen}
+                                className={classNames(classes.menuButton, {
+                                    [classes.hide]: isDrawerOpen,
+                                })}
+                            >
+                                <FontAwesomeIcon icon="bars" />
+                            </IconButton>
+                            <Typography variant="h6" color="inherit" noWrap>
+                                Tone Analyzer (Telia - Lietuvos draudimas)
             </Typography>
-                    </Toolbar>
-                </AppBar>
-                <Drawer
-                    variant="permanent"
-                    className={classNames(classes.drawer, {
-                        [classes.drawerOpen]: isDrawerOpen,
-                        [classes.drawerClose]: !isDrawerOpen,
-                    })}
-                    classes={{
-                        paper: classNames({
+                        </Toolbar>
+                    </AppBar>
+                    <Drawer
+                        variant="permanent"
+                        className={classNames(classes.drawer, {
                             [classes.drawerOpen]: isDrawerOpen,
                             [classes.drawerClose]: !isDrawerOpen,
-                        }),
-                    }}
-                    open={isDrawerOpen}
-                >
-                    <div className={classes.toolbar}>
-                        <IconButton onClick={this.handleDrawerOpen}>
-                            {theme.direction === 'rtl' ? <FontAwesomeIcon icon="arrow-right" /> : <FontAwesomeIcon icon="arrow-left" />}
-                        </IconButton>
-                    </div>
-                    {availableChats && availableChats.length > 0 && availableChats.map(chat => <ChatSummary chat={chat} />)}
-                </Drawer>
-                <main className={classes.content}>
-                    <div className={classes.toolbar} />
+                        })}
+                        classes={{
+                            paper: classNames({
+                                [classes.drawerOpen]: isDrawerOpen,
+                                [classes.drawerClose]: !isDrawerOpen,
+                            }),
+                        }}
+                        open={isDrawerOpen}
+                    >
+                        <div className={classes.toolbar}>
+                            <IconButton onClick={this.handleDrawerOpen}>
+                                {theme.direction === 'rtl' ? <FontAwesomeIcon icon="arrow-right" /> : <FontAwesomeIcon icon="arrow-left" />}
+                            </IconButton>
+                        </div>
+                        {availableChats && availableChats.length > 0 && availableChats.map(chat => <ChatSummary chat={chat} />)}
+                    </Drawer>
+                    <main className={classes.content}>
+                        <div className={classes.toolbar} />
 
-                    <Grid container spacing={24}>
-                        <Grid item xs={12}>
-                            <ChatWindow handleChange={this.handleChange} handleClick={this.getEmotions}
-                                messages={messages} isLoading={isLoading} inputValue={inputValue} />
+                        <Grid container spacing={24}>
+                            <Grid item xs={12}>
+                                <ChatWindow handleChange={this.handleChange} handleClick={this.getEmotions}
+                                    messages={messages} isLoading={isLoading} inputValue={inputValue} />
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </main>
-            </div>
+                    </main>
+                </div>
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'center',
+                    }}
+                    open={isSnackbarOpen}
+                    autoHideDuration={6000}
+                    onClose={this.handleSnackbarOpen}
+                    ContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={<span id="message-id">Nėra duomenų</span>}
+                    action={[
+                        <Button key="undo" color="secondary" size="small" onClick={this.handleSnackbarOpen}>
+                            UNDO
+                      </Button>,
+                        <IconButton
+                            key="close"
+                            aria-label="Close"
+                            color="inherit"
+                            onClick={this.handleSnackbarOpen}
+                        >
+                            <FontAwesomeIcon icon="times" />
+                        </IconButton>,
+                    ]}
+                />
+            </React.Fragment>
         )
     }
 }
