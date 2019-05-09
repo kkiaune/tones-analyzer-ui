@@ -130,13 +130,13 @@ export class HomePageContainer extends Component {
                     <div className={classes.toolbar} />
 
             <Grid container spacing={24}>
-                    <Grid item xs={9}>
+                    <Grid item xs={12}>
          <ChatWindow handleChange={this.handleChange} handleClick={this.getEmotions}
          messages={messages} isLoading={isLoading}/>
              </Grid>
-             <Grid item xs={3}>
+             {/* <Grid item xs={3}>
                     <ClientEmotionsContainer  clientEmotions = {clientEmotions}/>
-             </Grid>
+             </Grid> */}
             </Grid>
                 </main>
             </div>

@@ -93,7 +93,7 @@ const ChatWindow = ({ handleChange, handleClick, classes, messages, isLoading })
                                         </Typography>)
                                         )
                                     }
-                                    title="Client"
+                                    title="Klientas"
                                     subheader="2019-05-09 17:41"
                                 />
                                 <CardContent>
