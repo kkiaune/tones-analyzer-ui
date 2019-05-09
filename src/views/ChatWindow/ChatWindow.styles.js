@@ -22,11 +22,23 @@ export const styles = theme => ({
     height: 35,
     margin: 4,
   },
-  avatar: {
+  avatarChat: {
     backgroundColor: "brown",
+    marginLeft:0,
+    marginRight:0,
+    paddingRight:0,
+  },
+  avatarClient: {
+    backgroundColor: "lightblue",
+    marginLeft:20,
+    marginRight: -15,
   },
   card: {
-    maxWidth: 400,
+    maxWidth: `calc(100%)`,
+    marginBottom: 20,
+  },
+  paper: {
+    backgroundColor: 'transparent',
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
