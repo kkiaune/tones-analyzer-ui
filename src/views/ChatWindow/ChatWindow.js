@@ -26,14 +26,14 @@ class ChatWindow extends Component {
                     <Paper className={classes.paper} elevation={0}>
                         <Grid container spacing={24}>
                             <Grid item xs={8}>
-                                <Card className={classes.card}>
+                                <Card className={(classes.cardClient, classes.clientAnger)}>
                                 <CardHeader
                                 avatar={
-                                    <Avatar className={classes.avatarChat}>
-                                    <FontAwesomeIcon icon="robot" />
+                                    <Avatar className={classes.avatarClient}>
+                                    <FontAwesomeIcon icon="user" />
                                     </Avatar>
                                 }
-                                title="Chatbot"
+                                title="Client"
                                 subheader="2019-05-09 17:41"
                                 />
                                 <CardContent>
@@ -46,16 +46,100 @@ class ChatWindow extends Component {
                             <Grid item xs={4}></Grid>
                         </Grid>
                         <Grid container spacing={24}>
-                        <Grid item xs={4}></Grid>
                             <Grid item xs={8}>
-                                <Card className={classes.card}>
-                                <CardHeader dir="rtl" 
+                                <Card className={(classes.cardClient, classes.clientDisgust)}>
+                                <CardHeader
                                 avatar={
                                     <Avatar className={classes.avatarClient}>
                                     <FontAwesomeIcon icon="user" />
                                     </Avatar>
                                 }
                                 title="Client"
+                                subheader="2019-05-09 17:41"
+                                />
+                                <CardContent>
+                                <Typography component="p">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                </Typography>
+                                </CardContent>
+                                </Card>
+                            </Grid>
+                            <Grid item xs={4}></Grid>
+                        </Grid>
+                        <Grid container spacing={24}>
+                            <Grid item xs={8}>
+                                <Card className={(classes.cardClient, classes.clientFear)}>
+                                <CardHeader
+                                avatar={
+                                    <Avatar className={classes.avatarClient}>
+                                    <FontAwesomeIcon icon="user" />
+                                    </Avatar>
+                                }
+                                title="Client"
+                                subheader="2019-05-09 17:41"
+                                />
+                                <CardContent>
+                                <Typography component="p">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                </Typography>
+                                </CardContent>
+                                </Card>
+                            </Grid>
+                            <Grid item xs={4}></Grid>
+                        </Grid>
+                        <Grid container spacing={24}>
+                            <Grid item xs={8}>
+                                <Card className={(classes.cardClient, classes.clientJoy)}>
+                                <CardHeader
+                                avatar={
+                                    <Avatar className={classes.avatarClient}>
+                                    <FontAwesomeIcon icon="user" />
+                                    </Avatar>
+                                }
+                                title="Client"
+                                subheader="2019-05-09 17:41"
+                                />
+                                <CardContent>
+                                <Typography component="p">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                </Typography>
+                                </CardContent>
+                                </Card>
+                            </Grid>
+                            <Grid item xs={4}></Grid>
+                        </Grid>
+                        <Grid container spacing={24}>
+                            <Grid item xs={8}>
+                                <Card className={(classes.cardClient, classes.clientSadness)}>
+                                <CardHeader
+                                avatar={
+                                    <Avatar className={classes.avatarClient}>
+                                    <FontAwesomeIcon icon="user" />
+                                    </Avatar>
+                                }
+                                title="Client"
+                                subheader="2019-05-09 17:41"
+                                />
+                                <CardContent>
+                                <Typography component="p">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                </Typography>
+                                </CardContent>
+                                </Card>
+                            </Grid>
+                            <Grid item xs={4}></Grid>
+                        </Grid>
+                        <Grid container spacing={24}>
+                            <Grid item xs={4}></Grid>
+                            <Grid item xs={8}>
+                                <Card className={classes.cardBot}>
+                                <CardHeader dir="rtl" 
+                                avatar={
+                                    <Avatar className={classes.avatarBot}>
+                                    <FontAwesomeIcon icon="robot" />
+                                    </Avatar>
+                                }
+                                title="Chatbot"
                                 subheader="2019-05-09 17:41"
                                 />
                                 <CardContent>
