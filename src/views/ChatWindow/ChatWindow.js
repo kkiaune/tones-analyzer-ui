@@ -32,7 +32,13 @@ class ChatWindow extends Component {
                                     <Avatar className={classes.avatarClient}>
                                     <FontAwesomeIcon icon="user" />
                                     </Avatar>
-                                }
+                                }          action={
+                                    <Typography color="textSecondary">
+                                      Fear:  1.6  
+                                        <FontAwesomeIcon className={classes.marginLeftCl}icon="smile" />
+                                        </Typography>
+                              
+                                 }
                                 title="Client"
                                 subheader="2019-05-09 17:41"
                                 />
@@ -54,6 +60,14 @@ class ChatWindow extends Component {
                                     <FontAwesomeIcon icon="user" />
                                     </Avatar>
                                 }
+
+                                action={
+                                    <Typography color="textSecondary">
+                                       Disgust:  0.5  
+                                        <FontAwesomeIcon className={classes.marginLeftCl}icon="frown" />
+                                        </Typography>
+                              
+                                 }
                                 title="Client"
                                 subheader="2019-05-09 17:41"
                                 />
@@ -75,6 +89,13 @@ class ChatWindow extends Component {
                                     <FontAwesomeIcon icon="user" />
                                     </Avatar>
                                 }
+                                action={
+                                    <Typography color="textSecondary">
+                                      Fear:  1.6  
+                                        <FontAwesomeIcon className={classes.marginLeftCl}icon="smile" />
+                                        </Typography>
+                              
+                                 }
                                 title="Client"
                                 subheader="2019-05-09 17:41"
                                 />
@@ -95,7 +116,8 @@ class ChatWindow extends Component {
                                     <Avatar className={classes.avatarClient}>
                                     <FontAwesomeIcon icon="user" />
                                     </Avatar>
-                                } action={
+                                } 
+                                action={
                                     
                      
                                             <Typography color="textSecondary">
@@ -103,7 +125,6 @@ class ChatWindow extends Component {
                                                 <FontAwesomeIcon className={classes.marginLeftCl}icon="poo" />
                                                 </Typography>
                                       
-                            
                                   }
                                 title="Client"
                                 subheader="2019-05-09 17:41"
@@ -125,7 +146,13 @@ class ChatWindow extends Component {
                                     <Avatar className={classes.avatarClient}>
                                     <FontAwesomeIcon icon="user" />
                                     </Avatar>
-                                }
+                                }          action={
+                                    <Typography color="textSecondary">
+                                      Fear:  1.6  
+                                        <FontAwesomeIcon className={classes.marginLeftCl}icon="smile" />
+                                        </Typography>
+                              
+                                 }
                                 title="Client"
                                 subheader="2019-05-09 17:41"
                                 />
@@ -148,6 +175,7 @@ class ChatWindow extends Component {
                                     <FontAwesomeIcon icon="robot" />
                                     </Avatar>
                                 }
+                                
                                 title="Chatbot"
                                 subheader="2019-05-09 17:41"
                                 />

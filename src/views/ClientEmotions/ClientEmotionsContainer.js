@@ -12,24 +12,31 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 
-const ClientEmotionsContainer = ({ clientEmotions }) => 
-      clientEmotions && clientEmotions.map(emotion => (<Card key={emotion.tone + emotion.score}>
-          <CardContent>
-          { emotion.tone == 'Anger' ?
-           <FontAwesomeIcon icon="poo" />
-          : <FontAwesomeIcon icon="frown" />
-          }
+const ClientEmotionsContainer = ({ clientEmotions }) => (
+<Card>
+<CardContent>
+  empty
+</CardContent>
+</Card>
+      // clientEmotions && clientEmotions.map(emotion => (<Card key={emotion.tone + emotion.score}>
+      //     <CardContent>
+      //     { emotion.tone == 'Anger' ?
+      //      <FontAwesomeIcon icon="poo" />
+      //     : <FontAwesomeIcon icon="frown" />
+      //     }
          
-            <Typography color="textSecondary">
-              Emotion:  {emotion.tone} <br />
-            </Typography>
-            <Typography component="p">
-              Score: {emotion.score}
-              <br />
-            </Typography>
-          </CardContent>
+      //       <Typography color="textSecondary">
+      //         Emotion:  {emotion.tone} <br />
+      //       </Typography>
+      //       <Typography component="p">
+      //         Score: {emotion.score}
+      //         <br />
+      //       </Typography>
+      //     </CardContent>
           
-        </Card>));
+      //   </Card>)
+        
+      );
 
 ClientEmotionsContainer.propTypes = {
   clientEmotions: PropTypes.object.isRequired
