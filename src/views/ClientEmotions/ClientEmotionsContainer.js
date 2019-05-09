@@ -12,16 +12,11 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 
-
-function need(){
-
-}
-
 const ClientEmotionsContainer = ({ clientEmotions }) => 
       clientEmotions && clientEmotions.map(emotion => (<Card key={emotion.tone + emotion.score}>
           <CardContent>
-          { emotion.tone == 'happy' ?
-           <FontAwesomeIcon icon="smile" />
+          { emotion.tone == 'Anger' ?
+           <FontAwesomeIcon icon="poo" />
           : <FontAwesomeIcon icon="frown" />
           }
          

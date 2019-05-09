@@ -1,14 +1,23 @@
 export const clientEmotionsMock = [
     {
-        "tone":"angry",
+        "tone":"Anger",
         "score":0.5
     },
     {
-        "tone":"happy",
+        "tone":"Disgust",
         "score":0.1
     },
     {
-        "tone":"sad",
+        "tone":"Fear",
         "score":0.4
+    },
+    {
+        "tone":"Joy",
+        "score":0.4
+    },
+    {
+        "tone":"Sadness",
+        "score":0.22
+    
     }
 ];
