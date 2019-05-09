@@ -13,11 +13,18 @@ import Typography from '@material-ui/core/Typography';
 
 
 
+function need(){
+
+}
 
 const ClientEmotionsContainer = ({ clientEmotions }) => 
       clientEmotions && clientEmotions.map(emotion => (<Card key={emotion.tone + emotion.score}>
           <CardContent>
-          <FontAwesomeIcon icon="smile" />
+          { emotion.tone == 'happy' ?
+           <FontAwesomeIcon icon="smile" />
+          : <FontAwesomeIcon icon="frown" />
+          }
+         
             <Typography color="textSecondary">
               Emotion:  {emotion.tone} <br />
             </Typography>
