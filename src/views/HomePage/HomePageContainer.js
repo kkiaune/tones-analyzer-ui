@@ -20,6 +20,8 @@ import ChatWindow from '../ChatWindow/ChatWindow';
 import { availableChatsMock } from './mock';
 import { clientEmotionsMock } from './mockEmotions';
 
+import Grid from '@material-ui/core/Grid';
+
 export class HomePageContainer extends Component {
     constructor() {
         super();
@@ -98,8 +100,15 @@ export class HomePageContainer extends Component {
                 </Drawer>
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
+
+            <Grid container spacing={24}>
+                    <Grid item xs={9}>
                     <ChatWindow />
+             </Grid>
+             <Grid item xs={3}>
                     <ClientEmotionsContainer  clientEmotions = {clientEmotions}/>
+             </Grid>
+            </Grid>
                 </main>
             </div>
         )

@@ -21,8 +21,8 @@ class ChatWindow extends Component {
         const { classes } = this.props
         return (
             <React.Fragment>
-                <Grid container spacing={24}>
-                    <Grid item xs={9}>
+                {/* <Grid container spacing={24}>
+                    <Grid item xs={9}> */}
                     <Paper className={classes.paper} elevation={0}>
                         <Grid container spacing={24}>
                             <Grid item xs={8}>
@@ -73,15 +73,15 @@ class ChatWindow extends Component {
                         </IconButton>
                         </Paper>
                     </Paper>
-                    </Grid>
+                    {/* </Grid> */}
 
 
 
 
-                    <Grid item xs={3}>
+                    {/* <Grid item xs={3}>
                     <Paper className={classes.paper}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</Paper>
-                    </Grid>
-                </Grid>
+                    </Grid> */}
+                {/* // </Grid> */}
 
             </React.Fragment>
         )
