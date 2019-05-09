@@ -61,7 +61,7 @@ export class HomePageContainer extends Component {
                 text: text
             },
             headers: {
-                'Content-Type': 'text/plain'
+                'Content-Type': 'application/json'
             }
         }).then((result) => {
             // Do somthing
