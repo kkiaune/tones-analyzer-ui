@@ -16,10 +16,7 @@ import Grid from '@material-ui/core/Grid';
 
 import { styles } from './ChatWindow.styles';
 
-class ChatWindow extends Component {
-    render() {
-        const { classes } = this.props
-        return (
+const ChatWindow = ({handleChange, handleClick, classes}) => (
             <React.Fragment>
                 {/* <Grid container spacing={24}>
                     <Grid item xs={9}> */}
@@ -151,9 +148,9 @@ class ChatWindow extends Component {
                             </Grid>
                         </Grid>
                         <Paper className={classes.root} elevation={1}>
-                        <InputBase className={classes.input} placeholder="Type the message ..." />
+                        <InputBase className={classes.input} placeholder="Type the message ..." onChange={handleChange}/>
                         <Divider className={classes.divider} />
-                        <IconButton color="primary" className={classes.iconButton} aria-label="Directions"><FontAwesomeIcon icon="arrow-alt-circle-right" />
+                        <IconButton color="primary" className={classes.iconButton} aria-label="Directions" onClick={handleClick}><FontAwesomeIcon icon="arrow-alt-circle-right" />
                         </IconButton>
                         </Paper>
                     </Paper>
@@ -168,12 +165,12 @@ class ChatWindow extends Component {
                 {/* // </Grid> */}
 
             </React.Fragment>
-        )
-    }
-}
+        );
 
 ChatWindow.propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    handleClick: PropTypes.func.isRequired
 }
 
 export default withStyles(styles, { withTheme: true })(ChatWindow)

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import axios from 'axios';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -29,10 +30,13 @@ export class HomePageContainer extends Component {
         this.state = {
             isDrawerOpen: false,
             availableChats: availableChatsMock,
-            clientEmotions: clientEmotionsMock
+            clientEmotions: clientEmotionsMock,
+            text: ''
         };
 
         this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.getEmotions = this.getEmotions.bind(this);
     }
 
     handleDrawerOpen() {
@@ -44,6 +48,34 @@ export class HomePageContainer extends Component {
         //     console.log('data', data);
         //     this.setState({clientEmotions: data});
         // });
+    }
+
+    getEmotions() {
+        // const {text, array} = this.state;
+        const {text} = this.state;
+
+        axios({
+            method: 'POST',
+            url: 'http://192.168.43.211:5000/function/0',
+            data: {
+                text: text
+            },
+            headers: {
+                'Content-Type': 'text/plain'
+            }
+        }).then((result) => {
+            // Do somthing
+            console.log('result', result);
+            // this.setState({array: array.concat(result)});
+        })
+            .catch((err) => {
+                // Do somthing
+                console.log('err', err);
+            });;
+    }
+
+    handleChange(obj){
+        this.setState({text: obj.target.value})
     }
 
     render() {
@@ -103,7 +135,7 @@ export class HomePageContainer extends Component {
 
             <Grid container spacing={24}>
                     <Grid item xs={9}>
-                    <ChatWindow />
+                    <ChatWindow handleChange={this.handleChange} handleClick={this.getEmotions}/>
              </Grid>
              <Grid item xs={3}>
                     <ClientEmotionsContainer  clientEmotions = {clientEmotions}/>
