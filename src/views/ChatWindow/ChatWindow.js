@@ -119,7 +119,7 @@ const ChatWindow = ({ handleChange, handleClick, classes, messages, isLoading })
                                         )
                                     }
                                     title="Klientas"
-                                    subheader="2019-05-09 17:41"
+                                    subheader={message.date}
                                 />
                                 <CardContent>
                                     <Typography component="p">
@@ -143,7 +143,7 @@ const ChatWindow = ({ handleChange, handleClick, classes, messages, isLoading })
                                         }
 
                                         title="Agentas"
-                                        subheader="2019-05-09 17:41"
+                                        subheader={message.date}
                                     />
                                     <CardContent>
                                         <Typography component="p">

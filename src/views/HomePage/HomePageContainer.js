@@ -62,7 +62,7 @@ export class HomePageContainer extends Component {
                 'Content-Type': 'application/json'
             }
         }).then((result) => {
-            messages.push({tones: result.data, text:text, response: "Ačiū už jūsų žinutę."})
+            messages.push({tones: result.data, text:text, response: "Ačiū už jūsų žinutę.", date: new Date().toLocaleString('lt-LT')})
             this.setState({messages: messages, isLoading:false});
         })
             .catch((err) => {
