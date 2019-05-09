@@ -95,7 +95,16 @@ class ChatWindow extends Component {
                                     <Avatar className={classes.avatarClient}>
                                     <FontAwesomeIcon icon="user" />
                                     </Avatar>
-                                }
+                                } action={
+                                    
+                     
+                                            <Typography color="textSecondary">
+                                               Anger:  1.6  
+                                                <FontAwesomeIcon className={classes.marginLeftCl}icon="poo" />
+                                                </Typography>
+                                      
+                            
+                                  }
                                 title="Client"
                                 subheader="2019-05-09 17:41"
                                 />
