@@ -60,9 +60,11 @@ export class HomePageContainer extends Component {
             }
         }).then((result) => {
             messages.push({ tones: result.data, text: inputValue, response: "Ačiū už jūsų žinutę.", date: new Date().toLocaleString('lt-LT') });
+            console.log('messages', messages);
             this.setState({ messages: messages, isLoading: false, inputValue: '' });
         })
             .catch((err) => {
+                this.setState({ isLoading: false });
                 console.log('err', err);
             });;
     }
