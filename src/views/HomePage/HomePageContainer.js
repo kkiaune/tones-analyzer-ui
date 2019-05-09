@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { styles } from './HomePageContainer.styles';
 import ClientEmotionsContainer from '../ClientEmotions/ClientEmotionsContainer';
 import ChatSummary from '../../components/ChatSummary/ChatSummary';
+import ChatWindow from '../ChatWindow/ChatWindow';
+
 import { availableChatsMock } from './mock';
 
 export class HomePageContainer extends Component {
@@ -90,13 +92,11 @@ export class HomePageContainer extends Component {
                             {theme.direction === 'rtl' ? <FontAwesomeIcon icon="arrow-right" /> : <FontAwesomeIcon icon="arrow-left" />}
                         </IconButton>
                     </div>
-                    <List>
-                        {availableChats.length > 0 && availableChats.map(chat => (<ChatSummary key={chat.id} chat={chat} />))}
-                    </List>
+                    {availableChats && availableChats.length > 0 && availableChats.map(chat => <ChatSummary chat={chat} />)}
                 </Drawer>
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
-
+                    <ChatWindow />
                     <ClientEmotionsContainer />
                 </main>
             </div>
