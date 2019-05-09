@@ -22,20 +22,46 @@ export const styles = theme => ({
     height: 35,
     margin: 4,
   },
-  avatarChat: {
+  avatarBot: {
     backgroundColor: "brown",
+    marginLeft:20,
+    marginRight: -15,
+    textAlign: "right",
+  },
+  avatarClient: {
+    backgroundColor: "lightblue",
     marginLeft:0,
     marginRight:0,
     paddingRight:0,
   },
-  avatarClient: {
-    backgroundColor: "lightblue",
-    marginLeft:20,
-    marginRight: -15,
-  },
-  card: {
+  cardBot: {
     maxWidth: `calc(100%)`,
     marginBottom: 20,
+    textAlign: "right",
+  },
+  cardClient: {
+    maxWidth: `calc(100%)`,
+    marginBottom: 20,
+  },
+  clientAnger: { //raudona
+    boxShadow: '0 4px 6px 3px rgba(255, 105, 135, .6)',
+    marginBottom: 10,
+  },
+  clientDisgust: { //tamsiai zalia
+    boxShadow: '0 4px 6px 3px rgba(39, 174, 96, .5)',
+    marginBottom: 10,
+  },
+  clientFear: { //violetine
+    boxShadow: '0 4px 6px 3px rgba(142, 68, 173, .6)',
+    marginBottom: 10,
+  },
+  clientJoy: { //auksine
+    boxShadow: '0 4px 6px 3px rgba(230, 126, 34, .6)',
+    marginBottom: 10,
+  },
+  clientSadness: { //melyna
+    boxShadow: '0 4px 6px 3px rgba(52, 152, 219, .6)',
+    marginBottom: 10,
   },
   paper: {
     backgroundColor: 'transparent',
