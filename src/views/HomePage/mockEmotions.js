@@ -1,4 +1,4 @@
-[
+export const clientEmotionsMock = [
     {
         "tone":"angry",
         "score":0.5
@@ -9,6 +9,6 @@
     },
     {
         "tone":"angry",
-        "score":0.5
+        "score":0.4
     }
-]
+];

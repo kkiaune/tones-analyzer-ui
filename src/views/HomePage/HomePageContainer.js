@@ -18,6 +18,7 @@ import ChatSummary from '../../components/ChatSummary/ChatSummary';
 import ChatWindow from '../ChatWindow/ChatWindow';
 
 import { availableChatsMock } from './mock';
+import { clientEmotionsMock } from './mockEmotions';
 
 export class HomePageContainer extends Component {
     constructor() {
@@ -25,7 +26,8 @@ export class HomePageContainer extends Component {
 
         this.state = {
             isDrawerOpen: false,
-            availableChats: availableChatsMock
+            availableChats: availableChatsMock,
+            clientEmotions: clientEmotionsMock
         };
 
         this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
@@ -44,7 +46,7 @@ export class HomePageContainer extends Component {
 
     render() {
         const { theme, classes } = this.props;
-        const { isDrawerOpen, availableChats } = this.state;
+        const { isDrawerOpen, availableChats, clientEmotions } = this.state;
 
         console.log('isDrawerOpen', isDrawerOpen);
 
@@ -97,7 +99,7 @@ export class HomePageContainer extends Component {
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
                     <ChatWindow />
-                    <ClientEmotionsContainer />
+                    <ClientEmotionsContainer  clientEmotions = {clientEmotions}/>
                 </main>
             </div>
         )
