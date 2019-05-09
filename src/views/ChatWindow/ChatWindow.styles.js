@@ -122,4 +122,10 @@ export const styles = theme => ({
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
   },
+  marginLeftCl:{
+    marginLeft: 15,
+    marginRight: 15,
+    marginTop: 15,
+    fontSize: 24,
+  },
 });
