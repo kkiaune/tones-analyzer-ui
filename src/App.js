@@ -1,17 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import Button from '@material-ui/core/Button';
+import HomePageContainer from './views/HomePage/HomePageContainer';
 
-export class App extends Component {
-  render() {
-    return (
-        <div>
-        <Button variant="contained">
-          Default
-        </Button>
-      </div>
-    )
-  }
-}
+const App =() => (<HomePageContainer/>);
 
 export default App;
