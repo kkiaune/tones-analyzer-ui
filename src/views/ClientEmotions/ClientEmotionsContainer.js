@@ -39,7 +39,7 @@ const ClientEmotionsContainer = ({ clientEmotions }) => (
       );
 
 ClientEmotionsContainer.propTypes = {
-  clientEmotions: PropTypes.object.isRequired
+  clientEmotions: PropTypes.array.isRequired
 }
 
 export default ClientEmotionsContainer

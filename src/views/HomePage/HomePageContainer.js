@@ -33,7 +33,9 @@ export class HomePageContainer extends Component {
             clientEmotions: clientEmotionsMock,
             text: '',
             allTexts: [],
-            messages: []
+            messages: [],
+            responses: [],
+            isLoading: false
         };
 
         this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
@@ -45,16 +47,10 @@ export class HomePageContainer extends Component {
         this.setState(prevstate => ({ isDrawerOpen: !prevstate.isDrawerOpen }));
     }
 
-    getEmotions(text) {
-        // api.getTones({text: text}).then(data => {
-        //     console.log('data', data);
-        //     this.setState({clientEmotions: data});
-        // });
-    }
-
     getEmotions() {
-        // const {text, array} = this.state;
-        const {text,messages} = this.state;
+        const {text, messages, responses} = this.state;
+
+        this.setState({isLoading:true});
 
         axios({
             method: 'POST',
@@ -66,26 +62,21 @@ export class HomePageContainer extends Component {
                 'Content-Type': 'application/json'
             }
         }).then((result) => {
-            // Do somthing
-            console.log('result', result);
-            // console.log(result.data[0].tone);
-            // this.state.messages = result.data;
-            // render();
-            this.setState({messages: messages.push({tones: result.data, text:text})});
+            messages.push({tones: result.data, text:text, response: "Ačiū už jūsų žinutę."})
+            this.setState({messages: messages, isLoading:false});
         })
             .catch((err) => {
-                // Do somthing
                 console.log('err', err);
             });;
     }
 
     handleChange(obj){
-        this.setState({text: obj.target.value})
+        this.setState({text: obj.target.value});
     }
 
     render() {
         const { theme, classes } = this.props;
-        const { isDrawerOpen, availableChats, clientEmotions, messages, text } = this.state;
+        const { isDrawerOpen, availableChats, clientEmotions, messages, isLoading, responses } = this.state;
 
         console.log('isDrawerOpen', isDrawerOpen);
         console.log('isDrawerOpen', messages);
@@ -141,7 +132,7 @@ export class HomePageContainer extends Component {
             <Grid container spacing={24}>
                     <Grid item xs={9}>
          <ChatWindow handleChange={this.handleChange} handleClick={this.getEmotions}
-         messagesArray={messages} messageText= {text}/>
+         messages={messages} isLoading={isLoading}/>
              </Grid>
              <Grid item xs={3}>
                     <ClientEmotionsContainer  clientEmotions = {clientEmotions}/>

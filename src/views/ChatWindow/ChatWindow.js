@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,204 +13,143 @@ import CardContent from '@material-ui/core/CardContent';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { styles } from './ChatWindow.styles';
 
-const ChatWindow = ({handleChange, handleClick, classes, messages, text}) => (
-            <React.Fragment>
-                {/* <Grid container spacing={24}>
-                    <Grid item xs={9}> */}
-                    <Paper className={classes.paper} elevation={0}>
-                        <Grid container spacing={24}>
-                            <Grid item xs={8}>
-                            {messages && messages.length > 0 && messages.map(message => (<Card className={(classes.cardClient, classes.clientAnger)}>
-                                <CardHeader
-                                avatar={
-                                    <Avatar className={classes.avatarClient}>
-                                    <FontAwesomeIcon icon="user" />
-                                    </Avatar>
-                                }          action={
-                                    <Typography color="textSecondary">
-                                      {`${message.tone} : ${message.score}`}
-                                        <FontAwesomeIcon className={classes.marginLeftCl}icon="smile" />
-                                        </Typography>
-                              
-                                 }
-                                title="Client"
-                                subheader="2019-05-09 17:41"
-                                />
-                                <CardContent>
-                                <Typography component="p">
-                               {message.text}
-                                </Typography>
-                                </CardContent>
-                                </Card>))}
-                                
-                            </Grid>
-                            <Grid item xs={4}></Grid>
-                        </Grid>
-                        {/* <Grid container spacing={24}>
-                            <Grid item xs={8}>
-                                <Card className={(classes.cardClient, classes.clientDisgust)}>
-                                <CardHeader
-                                avatar={
-                                    <Avatar className={classes.avatarClient}>
-                                    <FontAwesomeIcon icon="user" />
-                                    </Avatar>
-                                }
+const ChatWindow = ({ handleChange, handleClick, classes, messages, isLoading }) => {
+    console.log('messages', messages);
 
-                                action={
-                                    <Typography color="textSecondary">
-                                       Disgust:  0.5  
-                                        <FontAwesomeIcon className={classes.marginLeftCl}icon="frown" />
-                                        </Typography>
-                              
-                                 }
-                                title="Client"
-                                subheader="2019-05-09 17:41"
-                                />
-                                <CardContent>
-                                <Typography component="p">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                </Typography>
-                                </CardContent>
-                                </Card>
-                            </Grid>
-                            <Grid item xs={4}></Grid>
-                        </Grid> */}
-                        {/* <Grid container spacing={24}>
-                            <Grid item xs={8}>
-                                <Card className={(classes.cardClient, classes.clientFear)}>
+    const getSmile = tone => {
+        let smileToReturn = null;
+
+        switch (tone) {
+            case "Anger":
+                smileToReturn = 'poo';
+                break;
+            case "Disgust":
+                smileToReturn = 'poo';
+                break;
+            case "Fear":
+                smileToReturn = 'tired';
+                break;
+            case "Joy":
+                smileToReturn = 'smile';
+                break;
+            case "Sadness":
+                smileToReturn = 'sad-tear';
+                break;
+            default:
+                break;
+        };
+
+        return smileToReturn;
+    }
+
+    const getStyle = message => {
+        let styleToReturn = null;
+
+        switch (message.tones && message.tones.length > 0 && message.tones[0].tone) {
+            case "Anger":
+                styleToReturn = 'clientAnger';
+                break;
+            case "Disgust":
+                styleToReturn = 'clientDisgust';
+                break;
+            case "Fear":
+                styleToReturn = 'clientFear';
+                break;
+            case "Joy":
+                styleToReturn = 'clientJoy';
+                break;
+            case "Sadness":
+                styleToReturn = 'clientSadness';
+                break;
+            default:
+                break;
+        };
+
+        return styleToReturn;
+    }
+
+    return (
+        <Paper className={classes.paper} elevation={0}>
+            {messages && messages.length > 0 && messages.map(message => (
+                <React.Fragment>
+                    <Grid container spacing={24}>
+                        <Grid item xs={8}>
+                            <Card key={`${message.text}_${message.tones.length}`} className={(classes.cardClient, classes[getStyle(message)])}>
                                 <CardHeader
-                                avatar={
-                                    <Avatar className={classes.avatarClient}>
-                                    <FontAwesomeIcon icon="user" />
-                                    </Avatar>
-                                }
-                                action={
-                                    <Typography color="textSecondary">
-                                      Fear:  1.6  
-                                        <FontAwesomeIcon className={classes.marginLeftCl}icon="smile" />
-                                        </Typography>
-                              
-                                 }
-                                title="Client"
-                                subheader="2019-05-09 17:41"
+                                    avatar={
+                                        <Avatar className={classes.avatarClient}>
+                                            <FontAwesomeIcon icon="user" />
+                                        </Avatar>
+                                    }
+                                    action={
+                                        message.tones && message.tones.map(tone => (
+                                        <Typography key={`${tone.tone}_${tone.score}`} color="textSecondary">
+                                            {tone.LT_text} {tone.score}
+                                            <FontAwesomeIcon className={classes.marginLeftCl} icon={getSmile(tone.tone)} />
+                                        </Typography>)
+                                        )
+                                    }
+                                    title="Client"
+                                    subheader="2019-05-09 17:41"
                                 />
                                 <CardContent>
-                                <Typography component="p">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                </Typography>
+                                    <Typography component="p">
+                                        {message.text}
+                                    </Typography>
                                 </CardContent>
-                                </Card>
-                            </Grid>
-                            <Grid item xs={4}></Grid>
+                            </Card>
                         </Grid>
-                        <Grid container spacing={24}>
-                            <Grid item xs={8}>
-                                <Card className={(classes.cardClient, classes.clientJoy)}>
-                                <CardHeader
-                                avatar={
-                                    <Avatar className={classes.avatarClient}>
-                                    <FontAwesomeIcon icon="user" />
-                                    </Avatar>
-                                } 
-                                action={
-                                    
-                     
-                                            <Typography color="textSecondary">
-                                               Anger:  1.6  
-                                                <FontAwesomeIcon className={classes.marginLeftCl}icon="poo" />
-                                                </Typography>
-                                      
-                                  }
-                                title="Client"
-                                subheader="2019-05-09 17:41"
-                                />
-                                <CardContent>
-                                <Typography component="p">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                </Typography>
-                                </CardContent>
-                                </Card>
-                            </Grid>
-                            <Grid item xs={4}></Grid>
-                        </Grid>
-                        <Grid container spacing={24}>
-                            <Grid item xs={8}>
-                                <Card className={(classes.cardClient, classes.clientSadness)}>
-                                <CardHeader
-                                avatar={
-                                    <Avatar className={classes.avatarClient}>
-                                    <FontAwesomeIcon icon="user" />
-                                    </Avatar>
-                                }          action={
-                                    <Typography color="textSecondary">
-                                      Fear:  1.6  
-                                        <FontAwesomeIcon className={classes.marginLeftCl}icon="smile" />
-                                        </Typography>
-                              
-                                 }
-                                title="Client"
-                                subheader="2019-05-09 17:41"
-                                />
-                                <CardContent>
-                                <Typography component="p">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                </Typography>
-                                </CardContent>
-                                </Card>
-                            </Grid>
-                            <Grid item xs={4}></Grid>
-                        </Grid> */}
+                        <Grid item xs={4} />
+                    </Grid>
+                    {message.response && (
                         <Grid container spacing={24}>
                             <Grid item xs={4}></Grid>
                             <Grid item xs={8}>
                                 <Card className={classes.cardBot}>
-                                <CardHeader dir="rtl" 
-                                avatar={
-                                    <Avatar className={classes.avatarBot}>
-                                    <FontAwesomeIcon icon="robot" />
-                                    </Avatar>
-                                }
-                                
-                                title="Chatbot"
-                                subheader="2019-05-09 17:41"
-                                />
-                                <CardContent>
-                                <Typography component="p">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                </Typography>
-                                </CardContent>
+                                    <CardHeader dir="rtl"
+                                        avatar={
+                                            <Avatar className={classes.avatarBot}>
+                                                <FontAwesomeIcon icon="robot" />
+                                            </Avatar>
+                                        }
+
+                                        title="Chatbot"
+                                        subheader="2019-05-09 17:41"
+                                    />
+                                    <CardContent>
+                                        <Typography component="p">
+                                            {message.response}
+                                        </Typography>
+                                    </CardContent>
                                 </Card>
                             </Grid>
                         </Grid>
-                        <Paper className={classes.root} elevation={1}>
-                        <InputBase className={classes.input} placeholder="Type the message ..." onChange={handleChange}/>
-                        <Divider className={classes.divider} />
-                        <IconButton color="primary" className={classes.iconButton} aria-label="Directions" onClick={handleClick}><FontAwesomeIcon icon="arrow-alt-circle-right" />
-                        </IconButton>
-                        </Paper>
-                    </Paper>
-                    {/* </Grid> */}
-
-
-
-
-                    {/* <Grid item xs={3}>
-                    <Paper className={classes.paper}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</Paper>
-                    </Grid> */}
-                {/* // </Grid> */}
-
-            </React.Fragment>
-        );
-
+                    )}
+                </React.Fragment>
+            ))}
+            <Paper className={classes.root} elevation={1}>
+                <InputBase className={classes.input} placeholder="Type the message ..." onChange={handleChange} />
+                <Divider className={classes.divider} />
+                {!isLoading ? (
+                    <IconButton color="primary" className={classes.iconButton} aria-label="Directions" onClick={handleClick}>
+                        <FontAwesomeIcon icon="arrow-alt-circle-right" />
+                    </IconButton>) : (
+                        <CircularProgress className={classes.progress} />
+                    )}
+            </Paper>
+        </Paper>
+    );
+};
 ChatWindow.propTypes = {
     classes: PropTypes.object.isRequired,
     handleChange: PropTypes.func.isRequired,
     handleClick: PropTypes.func.isRequired,
-    messages:PropTypes.func.isRequired,
-    text:PropTypes.func.isRequired,
+    messages: PropTypes.array.isRequired,
+    isLoading: PropTypes.bool.isRequired
 }
 
 export default withStyles(styles, { withTheme: true })(ChatWindow)
