@@ -31,7 +31,9 @@ export class HomePageContainer extends Component {
             isDrawerOpen: false,
             availableChats: availableChatsMock,
             clientEmotions: clientEmotionsMock,
-            text: ''
+            text: '',
+            allTexts: [],
+            messages: []
         };
 
         this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
@@ -52,7 +54,7 @@ export class HomePageContainer extends Component {
 
     getEmotions() {
         // const {text, array} = this.state;
-        const {text} = this.state;
+        const {text,messages} = this.state;
 
         axios({
             method: 'POST',
@@ -66,7 +68,10 @@ export class HomePageContainer extends Component {
         }).then((result) => {
             // Do somthing
             console.log('result', result);
-            // this.setState({array: array.concat(result)});
+            // console.log(result.data[0].tone);
+            // this.state.messages = result.data;
+            // render();
+            this.setState({messages: messages.push({tones: result.data, text:text})});
         })
             .catch((err) => {
                 // Do somthing
@@ -80,10 +85,10 @@ export class HomePageContainer extends Component {
 
     render() {
         const { theme, classes } = this.props;
-        const { isDrawerOpen, availableChats, clientEmotions } = this.state;
+        const { isDrawerOpen, availableChats, clientEmotions, messages, text } = this.state;
 
         console.log('isDrawerOpen', isDrawerOpen);
-
+        console.log('isDrawerOpen', messages);
         return (
             <div className={classes.root}>
                 <CssBaseline />
@@ -135,7 +140,8 @@ export class HomePageContainer extends Component {
 
             <Grid container spacing={24}>
                     <Grid item xs={9}>
-                    <ChatWindow handleChange={this.handleChange} handleClick={this.getEmotions}/>
+         <ChatWindow handleChange={this.handleChange} handleClick={this.getEmotions}
+         messagesArray={messages} messageText= {text}/>
              </Grid>
              <Grid item xs={3}>
                     <ClientEmotionsContainer  clientEmotions = {clientEmotions}/>

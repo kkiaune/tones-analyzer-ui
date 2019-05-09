@@ -16,14 +16,14 @@ import Grid from '@material-ui/core/Grid';
 
 import { styles } from './ChatWindow.styles';
 
-const ChatWindow = ({handleChange, handleClick, classes}) => (
+const ChatWindow = ({handleChange, handleClick, classes, messages, text}) => (
             <React.Fragment>
                 {/* <Grid container spacing={24}>
                     <Grid item xs={9}> */}
                     <Paper className={classes.paper} elevation={0}>
                         <Grid container spacing={24}>
                             <Grid item xs={8}>
-                                <Card className={(classes.cardClient, classes.clientAnger)}>
+                            {messages && messages.length > 0 && messages.map(message => (<Card className={(classes.cardClient, classes.clientAnger)}>
                                 <CardHeader
                                 avatar={
                                     <Avatar className={classes.avatarClient}>
@@ -31,7 +31,7 @@ const ChatWindow = ({handleChange, handleClick, classes}) => (
                                     </Avatar>
                                 }          action={
                                     <Typography color="textSecondary">
-                                      Fear:  1.6  
+                                      {`${message.tone} : ${message.score}`}
                                         <FontAwesomeIcon className={classes.marginLeftCl}icon="smile" />
                                         </Typography>
                               
@@ -41,14 +41,15 @@ const ChatWindow = ({handleChange, handleClick, classes}) => (
                                 />
                                 <CardContent>
                                 <Typography component="p">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                               {message.text}
                                 </Typography>
                                 </CardContent>
-                                </Card>
+                                </Card>))}
+                                
                             </Grid>
                             <Grid item xs={4}></Grid>
                         </Grid>
-                        <Grid container spacing={24}>
+                        {/* <Grid container spacing={24}>
                             <Grid item xs={8}>
                                 <Card className={(classes.cardClient, classes.clientDisgust)}>
                                 <CardHeader
@@ -76,8 +77,8 @@ const ChatWindow = ({handleChange, handleClick, classes}) => (
                                 </Card>
                             </Grid>
                             <Grid item xs={4}></Grid>
-                        </Grid>
-                        <Grid container spacing={24}>
+                        </Grid> */}
+                        {/* <Grid container spacing={24}>
                             <Grid item xs={8}>
                                 <Card className={(classes.cardClient, classes.clientFear)}>
                                 <CardHeader
@@ -161,7 +162,7 @@ const ChatWindow = ({handleChange, handleClick, classes}) => (
                                 </Card>
                             </Grid>
                             <Grid item xs={4}></Grid>
-                        </Grid>
+                        </Grid> */}
                         <Grid container spacing={24}>
                             <Grid item xs={4}></Grid>
                             <Grid item xs={8}>
@@ -207,7 +208,9 @@ const ChatWindow = ({handleChange, handleClick, classes}) => (
 ChatWindow.propTypes = {
     classes: PropTypes.object.isRequired,
     handleChange: PropTypes.func.isRequired,
-    handleClick: PropTypes.func.isRequired
+    handleClick: PropTypes.func.isRequired,
+    messages:PropTypes.func.isRequired,
+    text:PropTypes.func.isRequired,
 }
 
 export default withStyles(styles, { withTheme: true })(ChatWindow)
