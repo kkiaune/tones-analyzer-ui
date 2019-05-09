@@ -17,7 +17,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { styles } from './ChatWindow.styles';
 
-const ChatWindow = ({ handleChange, handleClick, classes, messages, isLoading }) => {
+const ChatWindow = ({ handleChange, handleClick, classes, messages, isLoading, inputValue}) => {
     console.log('messages', messages);
 
     const getSmile = tone => {
@@ -97,6 +97,8 @@ const ChatWindow = ({ handleChange, handleClick, classes, messages, isLoading })
         return styleToReturn;
     }
 
+    console.log('inputValue', inputValue);
+
     return (
         <Paper className={classes.paper} elevation={0}>
             {messages && messages.length > 0 && messages.map(message => (
@@ -119,7 +121,7 @@ const ChatWindow = ({ handleChange, handleClick, classes, messages, isLoading })
                                         )
                                     }
                                     title="Klientas"
-                                    subheader="2019-05-09 17:41"
+                                    subheader={message.date}
                                 />
                                 <CardContent>
                                     <Typography component="p">
@@ -143,7 +145,7 @@ const ChatWindow = ({ handleChange, handleClick, classes, messages, isLoading })
                                         }
 
                                         title="Agentas"
-                                        subheader="2019-05-09 17:41"
+                                        subheader={message.date}
                                     />
                                     <CardContent>
                                         <Typography component="p">
@@ -160,7 +162,7 @@ const ChatWindow = ({ handleChange, handleClick, classes, messages, isLoading })
                 <InputBase className={classes.input} placeholder="Type the message ..." onChange={handleChange} />
                 <Divider className={classes.divider} />
                 {!isLoading ? (
-                    <IconButton color="primary" className={classes.iconButton} aria-label="Directions" onClick={handleClick}>
+                    <IconButton color="primary" className={classes.iconButton} aria-label="Directions" onClick={handleClick} value={inputValue}>
                         <FontAwesomeIcon icon="arrow-alt-circle-right" />
                     </IconButton>) : (
                         <CircularProgress className={classes.progress} />
@@ -174,7 +176,8 @@ ChatWindow.propTypes = {
     handleChange: PropTypes.func.isRequired,
     handleClick: PropTypes.func.isRequired,
     messages: PropTypes.array.isRequired,
-    isLoading: PropTypes.bool.isRequired
+    isLoading: PropTypes.bool.isRequired,
+    inputValue: PropTypes.string.isRequired
 }
 
 export default withStyles(styles, { withTheme: true })(ChatWindow)

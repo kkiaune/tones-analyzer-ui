@@ -14,12 +14,10 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 
 import { styles } from './HomePageContainer.styles';
-import ClientEmotionsContainer from '../ClientEmotions/ClientEmotionsContainer';
 import ChatSummary from '../../components/ChatSummary/ChatSummary';
 import ChatWindow from '../ChatWindow/ChatWindow';
 
 import { availableChatsMock } from './mock';
-import { clientEmotionsMock } from './mockEmotions';
 
 import Grid from '@material-ui/core/Grid';
 
@@ -30,12 +28,11 @@ export class HomePageContainer extends Component {
         this.state = {
             isDrawerOpen: false,
             availableChats: availableChatsMock,
-            clientEmotions: clientEmotionsMock,
             text: '',
             allTexts: [],
             messages: [],
-            responses: [],
-            isLoading: false
+            isLoading: false,
+            inputValue: ''
         };
 
         this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
@@ -48,38 +45,36 @@ export class HomePageContainer extends Component {
     }
 
     getEmotions() {
-        const {text, messages, responses} = this.state;
+        const { inputValue, messages } = this.state;
 
-        this.setState({isLoading:true});
+        this.setState({ isLoading: true });
 
         axios({
             method: 'POST',
             url: 'http://192.168.43.211:5000/function/0',
             data: {
-                text: text
+                text: inputValue
             },
             headers: {
                 'Content-Type': 'application/json'
             }
         }).then((result) => {
-            messages.push({tones: result.data, text:text, response: "Ačiū už jūsų žinutę."})
-            this.setState({messages: messages, isLoading:false});
+            messages.push({ tones: result.data, text: inputValue, response: "Ačiū už jūsų žinutę.", date: new Date().toLocaleString('lt-LT') });
+            this.setState({ messages: messages, isLoading: false, inputValue: '' });
         })
             .catch((err) => {
                 console.log('err', err);
             });;
     }
 
-    handleChange(obj){
-        this.setState({text: obj.target.value});
+    handleChange(obj) {
+        this.setState({ inputValue: obj.target.value });
     }
 
     render() {
         const { theme, classes } = this.props;
-        const { isDrawerOpen, availableChats, clientEmotions, messages, isLoading, responses } = this.state;
+        const { isDrawerOpen, availableChats, messages, isLoading, inputValue } = this.state;
 
-        console.log('isDrawerOpen', isDrawerOpen);
-        console.log('isDrawerOpen', messages);
         return (
             <div className={classes.root}>
                 <CssBaseline />
@@ -87,7 +82,7 @@ export class HomePageContainer extends Component {
                     position="fixed"
                     className={classNames(classes.appBar, {
                         [classes.appBarShift]: isDrawerOpen,
-                    })} 
+                    })}
                 >
                     <Toolbar disableGutters={!isDrawerOpen}>
                         <IconButton
@@ -129,15 +124,12 @@ export class HomePageContainer extends Component {
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
 
-            <Grid container spacing={24}>
-                    <Grid item xs={12}>
-         <ChatWindow handleChange={this.handleChange} handleClick={this.getEmotions}
-         messages={messages} isLoading={isLoading}/>
-             </Grid>
-             {/* <Grid item xs={3}>
-                    <ClientEmotionsContainer  clientEmotions = {clientEmotions}/>
-             </Grid> */}
-            </Grid>
+                    <Grid container spacing={24}>
+                        <Grid item xs={12}>
+                            <ChatWindow handleChange={this.handleChange} handleClick={this.getEmotions}
+                                messages={messages} isLoading={isLoading} inputValue={inputValue} />
+                        </Grid>
+                    </Grid>
                 </main>
             </div>
         )
